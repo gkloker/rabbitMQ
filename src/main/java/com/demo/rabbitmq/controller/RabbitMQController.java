@@ -1,34 +1,48 @@
 package com.demo.rabbitmq.controller;
 
-import com.demo.rabbitmq.service.impl.RabbitMQProducerServiceImpl;
+import com.demo.rabbitmq.model.Eliquidacion;
+import com.demo.rabbitmq.service.impl.ProducerJsonServiceImpl;
+import com.demo.rabbitmq.service.impl.ProducerServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/rabbitmq")
 public class RabbitMQController {
-    private static final Logger LOG = LoggerFactory.getLogger(RabbitMQProducerServiceImpl.class);
+    private static final Logger LOG = LoggerFactory.getLogger(ProducerServiceImpl.class);
 
-    private RabbitMQProducerServiceImpl rp;
+    private ProducerServiceImpl producerService;
+    private ProducerJsonServiceImpl producerJsonService;
 
-    public RabbitMQController(RabbitMQProducerServiceImpl producer) {
-        this.rp = producer;
+    public RabbitMQController(ProducerServiceImpl producer, ProducerJsonServiceImpl producerJson) {
+        this.producerService = producer;
+        this.producerJsonService = producerJson;
     }
 
     @GetMapping("/send")
     public ResponseEntity<String> sendMessage(@RequestParam("msg") String msg) {
         try {
-            rp.sendMessage(msg);
+            producerService.sendMessage(msg);
 
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {
-            LOG.error("RabbitMQController ERROR: " + e.getMessage());
+            LOG.error("ERROR: " + e.getMessage());
+
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @PostMapping("/sendjson")
+    public ResponseEntity<String> sendJsonMessage(@RequestBody Eliquidacion eliq) {
+        try {
+            producerJsonService.sendJsonMessage(eliq);
+
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception e) {
+            LOG.error("ERROR: " + e.getMessage());
 
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }

@@ -1,5 +1,5 @@
 package com.demo.rabbitmq.service;
 
-public interface RabbitMQConsumerService {
+public interface ConsumerService {
     void consume(String msg);
 }
