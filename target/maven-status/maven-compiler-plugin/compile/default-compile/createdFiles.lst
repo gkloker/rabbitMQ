@@ -1,0 +1,8 @@
+com\demo\rabbitmq\config\RabbitMQConfig.class
+com\demo\rabbitmq\controller\RabbitMQController.class
+com\demo\rabbitmq\RabbitmqApplication.class
+com\demo\rabbitmq\model\Eliquidacion.class
+com\demo\rabbitmq\service\RabbitMQProducerService.class
+com\demo\rabbitmq\service\impl\RabbitMQConsumerServiceImpl.class
+com\demo\rabbitmq\service\impl\RabbitMQProducerServiceImpl.class
+com\demo\rabbitmq\service\RabbitMQConsumerService.class
