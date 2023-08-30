@@ -5,6 +5,7 @@ import com.demo.rabbitmq.service.impl.ProducerJsonServiceImpl;
 import com.demo.rabbitmq.service.impl.ProducerServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.boot.autoconfigure.liquibase.LiquibaseAutoConfiguration;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -36,7 +37,7 @@ public class RabbitMQController {
     }
 
     @PostMapping("/sendjson")
-    public ResponseEntity<String> sendJsonMessage(@RequestBody Eliquidacion eliq) {
+    public ResponseEntity<Eliquidacion> sendJsonMessage(@RequestBody Eliquidacion eliq) {
         try {
             producerJsonService.sendJsonMessage(eliq);
 

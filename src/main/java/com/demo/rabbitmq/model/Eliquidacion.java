@@ -1,14 +1,12 @@
 package com.demo.rabbitmq.model;
 
-import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Eliquidacion implements Serializable {
-    private static final long serialVersionUID = 1L;
+public class Eliquidacion {
 
     private String cuit;
     private String currency;
-    private LocalDate date;
+    //private LocalDate date;
     private String brand;
     private String commerce;
     private String entity;
@@ -17,10 +15,10 @@ public class Eliquidacion implements Serializable {
 
     public Eliquidacion() {}
 
-    public Eliquidacion(String cuit, String currency, LocalDate date, String brand, String commerce, String entity, String subsidiary, String numberAccount) {
+    public Eliquidacion(String cuit, String currency, /*LocalDate date,*/ String brand, String commerce, String entity, String subsidiary, String numberAccount) {
         this.cuit = cuit;
         this.currency = currency;
-        this.date = date;
+        //this.date = date;
         this.brand = brand;
         this.commerce = commerce;
         this.entity = entity;
@@ -44,13 +42,13 @@ public class Eliquidacion implements Serializable {
         this.currency = currency;
     }
 
-    public LocalDate getDate() {
+    /*public LocalDate getDate() {
         return date;
     }
 
     public void setDate(LocalDate date) {
         this.date = date;
-    }
+    }*/
 
     public String getBrand() {
         return brand;
@@ -97,7 +95,7 @@ public class Eliquidacion implements Serializable {
         return "Eliquidacion{" +
                 "cuit='" + cuit + '\'' +
                 ", currency='" + currency + '\'' +
-                ", date=" + date +
+                //", date=" + date +
                 ", brand='" + brand + '\'' +
                 ", commerce='" + commerce + '\'' +
                 ", entity='" + entity + '\'' +
