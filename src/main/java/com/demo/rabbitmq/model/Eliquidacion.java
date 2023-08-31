@@ -1,12 +1,16 @@
 package com.demo.rabbitmq.model;
 
-import java.time.LocalDate;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import java.util.Date;
 
 public class Eliquidacion {
 
     private String cuit;
     private String currency;
-    //private LocalDate date;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd")
+    private Date date;
     private String brand;
     private String commerce;
     private String entity;
@@ -15,10 +19,10 @@ public class Eliquidacion {
 
     public Eliquidacion() {}
 
-    public Eliquidacion(String cuit, String currency, /*LocalDate date,*/ String brand, String commerce, String entity, String subsidiary, String numberAccount) {
+    public Eliquidacion(String cuit, String currency, Date date, String brand, String commerce, String entity, String subsidiary, String numberAccount) {
         this.cuit = cuit;
         this.currency = currency;
-        //this.date = date;
+        this.date = date;
         this.brand = brand;
         this.commerce = commerce;
         this.entity = entity;
@@ -42,13 +46,13 @@ public class Eliquidacion {
         this.currency = currency;
     }
 
-    /*public LocalDate getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(Date date) {
         this.date = date;
-    }*/
+    }
 
     public String getBrand() {
         return brand;
@@ -95,7 +99,7 @@ public class Eliquidacion {
         return "Eliquidacion{" +
                 "cuit='" + cuit + '\'' +
                 ", currency='" + currency + '\'' +
-                //", date=" + date +
+                ", date=" + date +
                 ", brand='" + brand + '\'' +
                 ", commerce='" + commerce + '\'' +
                 ", entity='" + entity + '\'' +
