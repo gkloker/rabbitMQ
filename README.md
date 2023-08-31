@@ -14,3 +14,6 @@ curl -- header "Content-Type: application/json" \
      -- data '{"cuit":"2031895813", "currency":"032", "date":"2023-08-31", "brand":"1000", "commerce":"11223344", "entity":"021", "subsidiary":"001", "numberAccount":"44332211"}' \
     'http://localhost:8080/rabbitmq/sendjson'
 ```
+
+#### ConsumerServiceImpl el codigo se pone del lado del servidor para generar las liquidaciones
+#### ProducerServiceImpl el codigo se pone en la aplicacion para enviar el JSON al servidor
