@@ -7,7 +7,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.WebRequest;
 
 @RestController
 @RequestMapping("/rabbitmq")
@@ -16,6 +18,11 @@ public class RabbitMQController {
 
     private ProducerServiceImpl producerService;
     private ProducerJsonServiceImpl producerJsonService;
+
+    @InitBinder
+    public void initBinder(WebDataBinder binder) {
+        binder.setAllowedFields("msg");
+    }
 
     public RabbitMQController(ProducerServiceImpl producer, ProducerJsonServiceImpl producerJson) {
         this.producerService = producer;
